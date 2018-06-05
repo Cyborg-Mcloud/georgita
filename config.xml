@@ -41,6 +41,10 @@
 <preference name="android-installLocation"    value="auto" />
 <preference name="EnableViewportScale"    value="true" />
 
+<preference name="StatusBarOverlaysWebView" value="true" />
+<preference name="StatusBarBackgroundColor" value="#117a0a" />
+<preference name="StatusBarStyle" value="lightcontent" />
+
 	<description>
     georgita
     </description>
