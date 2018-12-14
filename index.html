@@ -23,6 +23,8 @@
  function onDeviceReady() 
  {
 
+var mymap = L.map('mapid').setView([41.8381203,44.7309707], 13);
+
 BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
         // these options are perfectly ordinary L.TileLayer options
         maxZoom: 18,
@@ -31,7 +33,7 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
         folder: 'tiles',
         name:   'example',
         debug:   true
-    });//.addTo(MAP);
+    }).addTo(mymap);
 
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
     var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 14, 15);
