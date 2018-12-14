@@ -22,6 +22,8 @@ L.tileLayerCordova = function (url,options,success_callback) {
     return new L.TileLayer.Cordova(url,options,success_callback);
 }
 
+var dir_is_set=0;
+
 L.TileLayer.Cordova = L.TileLayer.extend({
     initialize: function (url, options, success_callback) {
         // check required options or else choke and die
@@ -64,6 +66,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 						console.log(dirhandle);
                         if (myself.options.debug) console.log("getDirectory OK " + options.folder);
                         myself.dirhandle = dirhandle;
+						dir_is_set=1;
                         myself.dirhandle.setMetadata(null, null, { "com.apple.MobileBackup":1});
 
                         // Android's toURL() has a trailing / but iOS does not; better to have 2 than to have 0 !
@@ -195,42 +198,46 @@ L.TileLayer.Cordova = L.TileLayer.extend({
     },
 
     downloadAndStoreTile: function (x,y,z,success_callback,error_callback) {
-        var myself    = this;
+		if (dir_is_set)
+			{
+			
+			var myself    = this;
 
-        var filename  = myself.dirhandle.toURL() + '/' + [ myself.options.name, z, x, y ].join('-') + '.png';
-        var sourceurl = myself._url_online.replace('{z}',z).replace('{x}',x).replace('{y}',y);
-        if (myself.options.subdomains) {
-            var idx   = Math.floor(Math.random() * myself.options.subdomains.length);
-            var dom   = myself.options.subdomains[idx];
-            sourceurl = sourceurl.replace('{s}',dom);
-        }
-        if (myself.options.debug) console.log("Download " + sourceurl + " => " + filename);
+			var filename  = myself.dirhandle.toURL() + '/' + [ myself.options.name, z, x, y ].join('-') + '.png';
+			var sourceurl = myself._url_online.replace('{z}',z).replace('{x}',x).replace('{y}',y);
+			if (myself.options.subdomains) {
+				var idx   = Math.floor(Math.random() * myself.options.subdomains.length);
+				var dom   = myself.options.subdomains[idx];
+				sourceurl = sourceurl.replace('{s}',dom);
+			}
+			if (myself.options.debug) console.log("Download " + sourceurl + " => " + filename);
 
-        var transfer = new FileTransfer();
-        transfer.download(
-            sourceurl,
-            filename,
-            function(file) {
-                // tile downloaded OK; set the iOS "don't back up" flag then move on
-                file.setMetadata(null, null, { "com.apple.MobileBackup":1 });
-                if (success_callback) success_callback();
-            },
-            function(error) {
-                var errmsg;
-                switch (error.code) {
-                    case FileTransferError.FILE_NOT_FOUND_ERR:
-                        errmsg = "File not found:\n" + sourceurl;
-                        break;
-                    case FileTransferError.INVALID_URL_ERR:
-                        errmsg = "Invalid URL:\n" + sourceurl;
-                        break;
-                    case FileTransferError.CONNECTION_ERR:
-                        errmsg = "Connection error at the web server.\n";
-                        break;
-                }
-                if (error_callback) error_callback(errmsg);
-            }
-        );
+			var transfer = new FileTransfer();
+			transfer.download(
+				sourceurl,
+				filename,
+				function(file) {
+					// tile downloaded OK; set the iOS "don't back up" flag then move on
+					file.setMetadata(null, null, { "com.apple.MobileBackup":1 });
+					if (success_callback) success_callback();
+				},
+				function(error) {
+					var errmsg;
+					switch (error.code) {
+						case FileTransferError.FILE_NOT_FOUND_ERR:
+							errmsg = "File not found:\n" + sourceurl;
+							break;
+						case FileTransferError.INVALID_URL_ERR:
+							errmsg = "Invalid URL:\n" + sourceurl;
+							break;
+						case FileTransferError.CONNECTION_ERR:
+							errmsg = "Connection error at the web server.\n";
+							break;
+					}
+					if (error_callback) error_callback(errmsg);
+				}
+			);
+		}
     },
 
     downloadXYZList: function (xyzlist,overwrite,progress_callback,complete_callback,error_callback) {
