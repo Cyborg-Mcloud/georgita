@@ -198,7 +198,8 @@ L.TileLayer.Cordova = L.TileLayer.extend({
     },
 
     downloadAndStoreTile: function (x,y,z,success_callback,error_callback) {
-		if (dir_is_set)
+		console.log("download and store");
+		if (dir_is_set==1)
 			{
 			
 			var myself    = this;
