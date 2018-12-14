@@ -194,6 +194,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 
     downloadAndStoreTile: function (x,y,z,success_callback,error_callback) {
         var myself    = this;
+				console.log( myself.dirhandle);
         var filename  = myself.dirhandle.toURL() + '/' + [ myself.options.name, z, x, y ].join('-') + '.png';
         var sourceurl = myself._url_online.replace('{z}',z).replace('{x}',x).replace('{y}',y);
         if (myself.options.subdomains) {
