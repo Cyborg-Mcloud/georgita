@@ -59,7 +59,9 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                 myself.fshandle.root.getDirectory(
                     options.folder,
                     { create:true, exclusive:false },
-                    function (dirhandle) {
+                    function (dirhandle) 
+						{
+						console.log("dir: "+dirhandle);
                         if (myself.options.debug) console.log("getDirectory OK " + options.folder);
                         myself.dirhandle = dirhandle;
                         myself.dirhandle.setMetadata(null, null, { "com.apple.MobileBackup":1});
@@ -194,7 +196,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 
     downloadAndStoreTile: function (x,y,z,success_callback,error_callback) {
         var myself    = this;
-				console.log( myself.dirhandle);
+
         var filename  = myself.dirhandle.toURL() + '/' + [ myself.options.name, z, x, y ].join('-') + '.png';
         var sourceurl = myself._url_online.replace('{z}',z).replace('{x}',x).replace('{y}',y);
         if (myself.options.subdomains) {
