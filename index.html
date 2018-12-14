@@ -20,7 +20,8 @@
   
 
 <script>
-
+ function onDeviceReady() 
+ {
 
 BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
         // these options are perfectly ordinary L.TileLayer options
@@ -65,8 +66,8 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
             alert("Failed\nError code: " + error.code);
         }
     );
-
-
+}
+ document.addEventListener("deviceready", onDeviceReady, false);
 
 </script>
 
