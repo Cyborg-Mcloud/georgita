@@ -71,9 +71,6 @@
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<feature name="http://api.phonegap.com/1.0/file" />
 	
-	<gap:plugin name="leaflet" source="npm" />
-
-	<gap:plugin name="leaflet-cordova" source="npm" />
 
 
 	<gap:plugin name="cordova-plugin-inappbrowser"  source="npm" />
