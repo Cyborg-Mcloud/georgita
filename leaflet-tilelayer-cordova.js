@@ -61,7 +61,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                     { create:true, exclusive:false },
                     function (dirhandle) 
 						{
-						console.log("dir: "+dirhandle);
+						console.log(dirhandle);
                         if (myself.options.debug) console.log("getDirectory OK " + options.folder);
                         myself.dirhandle = dirhandle;
                         myself.dirhandle.setMetadata(null, null, { "com.apple.MobileBackup":1});
