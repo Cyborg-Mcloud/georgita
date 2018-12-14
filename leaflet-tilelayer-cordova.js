@@ -267,7 +267,9 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                     if (cbdone) cbdone();
                 }
             }
-            function yesReally() {
+            function yesReally() 
+				{
+				console.log("vizaxeb");
                 myself.downloadAndStoreTile(
                     x,y,z,
                     doneWithIt,
