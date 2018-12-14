@@ -31,7 +31,7 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
         folder: 'tiles',
         name:   'example',
         debug:   true
-    }).addTo(MAP);
+    });//.addTo(MAP);
 
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
     var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 14, 15);
