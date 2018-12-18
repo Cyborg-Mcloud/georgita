@@ -52,10 +52,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
         if (! window.requestFileSystem && this.options.debug) console.log("L.TileLayer.Cordova: device does not support requestFileSystem");
         if (! window.requestFileSystem) throw "L.TileLayer.Cordova: device does not support requestFileSystem";
         if (myself.options.debug) console.log("Opening filesystem");
-        window.requestFileSystem(
-            LocalFileSystem.PERSISTENT,
-            0,
-            function (fshandle) 
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,  function (fshandle) 
 				{
 				console.log(fshandle);
                 if (myself.options.debug) console.log("requestFileSystem OK " + options.folder);

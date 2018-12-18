@@ -26,10 +26,38 @@
 
 <img id='myimg'>
 <script>
+
+function checkIfFileExists()
+	{
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){fileSystem.root.getDirectory("tiles", {create: true, exclusive: false}, fileExists, fileDoesNotExist); } , getFSFail); 
+	
+	}
+
+
+function getFSFail(evt)
+	{
+    console.log("shit error");
+	    console.log(evt);
+	}
+
+
+function fileExists(fileEntry)
+	{
+//		console.log("aris!");
+//	dataex=1;
+	}
+function fileDoesNotExist()
+	{
+//		console.log("ar arsebobda");
+//    dataex=0;
+	}
+
 var BASE;
 var status_block=document.getElementById("status_block");
  function onDeviceReady() 
  {
+
+checkIfFileExists();
 
 var mymap = L.map('mapid').setView([41.8381203,44.7309707], 13);
 
