@@ -25,15 +25,27 @@
 <div id="status_block"></div>
 
 <img id='myimg'>
-<script>
 
+<iframe id='myframe' style='border:1px solid green;'></iframe>'
+<script>
+var myfolder="";
 function checkIfFileExists()
 	{
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getDirectory("tiles", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
 		console.log(fileSystem);
+		myfolder=fileSystem.toURL()
+		console.log(myfolder);
+
 		} , getFSFail); 
-	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+		fileSystem.root.getDirectory("tiles/dummy.html", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
+		console.log(fileSystem);
+		myfolder=fileSystem.toURL()
+		console.log(myfolder);
+		} , getFSFail); 
+	document.getElementById("myframe").src=myfolder+"tiles/dummy.html";
+
 	}
 
 
