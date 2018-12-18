@@ -67,7 +67,11 @@ function getFSFail(evt)
 function fileExists(fileEntry)
 	{
 		console.log(fileEntry);
+		if (myfolder=="")
+		{
 myfolder=fileEntry.toNativeURL();
+		}
+
 		console.log(myfolder);
 //		console.log("aris!");
 //	dataex=1;
