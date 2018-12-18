@@ -37,8 +37,9 @@ function checkIfFileExists()
 		
 
 		} , getFSFail); 
+
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-		fileSystem.root.getDirectory("tiles/dummy.html", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
+		fileSystem.root.getDirectory("tiles/dummy.html", {create: true, exclusive: false}, fileExists1, fileDoesNotExist);
 		console.log(fileSystem);
 		//myfolder=fileSystem.toURL()
 		//console.log(myfolder);
@@ -63,14 +64,21 @@ function getFSFail(evt)
 	    console.log(evt);
 	}
 
+function fileExists1(fileEntry)
+	{
+console.log("aq var");
+		console.log(fileEntry);
+	
+
+	}
 
 function fileExists(fileEntry)
 	{
 		console.log(fileEntry);
 		if (myfolder=="")
-		{
-myfolder=fileEntry.toNativeURL();
-		}
+			{
+			myfolder=fileEntry.toURL();
+			}
 
 		console.log(myfolder);
 //		console.log("aris!");
