@@ -34,8 +34,7 @@ function checkIfFileExists()
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getDirectory("tiles", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
 		console.log(fileSystem);
-		myfolder=fileSystem.toURL()
-		console.log(myfolder);
+		
 
 		} , getFSFail); 
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -58,6 +57,9 @@ function getFSFail(evt)
 
 function fileExists(fileEntry)
 	{
+		console.log(fileEntry);
+myfolder=fileEntry.toURL()
+		console.log(myfolder);
 //		console.log("aris!");
 //	dataex=1;
 	}
