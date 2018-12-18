@@ -86,7 +86,7 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
 
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
   
-	setTimeout("offlineze()",1000);
+	setTimeout("downtiles()",1000);
 
 }
  document.addEventListener("deviceready", onDeviceReady, false);
@@ -98,7 +98,7 @@ BASE.goOffline();
 	}
 function downtiles()
 {
-	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 12, 17);
+	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 14, 15);
  BASE.downloadXYZList(tile_list, true,
       
         function (done,total) {
