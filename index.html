@@ -40,8 +40,8 @@ function checkIfFileExists()
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getDirectory("tiles/dummy.html", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
 		console.log(fileSystem);
-		myfolder=fileSystem.toURL()
-		console.log(myfolder);
+		//myfolder=fileSystem.toURL()
+		//console.log(myfolder);
 		} , getFSFail); 
 	document.getElementById("myframe").src=myfolder+"tiles/dummy.html";
 
