@@ -300,6 +300,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 
             }
         }
+		console.log("runThisOneByIndex bolodan");
         runThisOneByIndex(xyzlist,0,progress_callback,complete_callback,error_callback);
     },
 
