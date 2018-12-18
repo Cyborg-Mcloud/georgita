@@ -43,9 +43,16 @@ function checkIfFileExists()
 		//myfolder=fileSystem.toURL()
 		//console.log(myfolder);
 		} , getFSFail); 
+
+	setTimeout("open_page();",1000);
+	}
+
+function open_page()
+	{
 	console.log("shevqmeni");
 	console.log("folder: "+myfolder);
 	document.getElementById("myframe").src=myfolder+"tiles/dummy.html";
+
 
 	}
 
