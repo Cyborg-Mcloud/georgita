@@ -55,7 +55,9 @@ L.TileLayer.Cordova = L.TileLayer.extend({
         window.requestFileSystem(
             LocalFileSystem.PERSISTENT,
             0,
-            function (fshandle) {
+            function (fshandle) 
+				{
+				console.log(fshandle);
                 if (myself.options.debug) console.log("requestFileSystem OK " + options.folder);
                 myself.fshandle = fshandle;
                 myself.fshandle.root.getDirectory(
