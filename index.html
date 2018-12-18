@@ -20,13 +20,13 @@
   
 
 
-<div id="mapid" style='border:1px solid red; width:200px; height:200px;'></div>
+<div id="mapid" style='border:1px solid red; width:300px; height:300px;'></div>
 
 <div id="status_block"></div>
 
 <img id='myimg'>
 
-<iframe id='myframe' style='border:1px solid green;'></iframe>'
+
 <script>
 var myfolder="";
 function checkIfFileExists()
@@ -38,23 +38,6 @@ function checkIfFileExists()
 
 		} , getFSFail); 
 
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-		fileSystem.root.getDirectory("tiles/dummy.html", {create: true, exclusive: false}, fileExists1, fileDoesNotExist);
-		console.log(fileSystem);
-		//myfolder=fileSystem.toURL()
-		//console.log(myfolder);
-		} , getFSFail); 
-
-	setTimeout("open_page();",1000);
-	}
-
-function open_page()
-	{
-	console.log("shevqmeni");
-	console.log("folder: "+myfolder);
-	document.getElementById("myframe").src=myfolder+"dummy.html";
-
-document.getElementById("myimg").src="file:///data/user/0/com.designge.georgita/files/files/tiles/tiles-15-20456-12198.png";
 	}
 
 
@@ -62,14 +45,6 @@ function getFSFail(evt)
 	{
     console.log("shit error");
 	    console.log(evt);
-	}
-
-function fileExists1(fileEntry)
-	{
-console.log("aq var");
-		console.log(fileEntry);
-	
-
 	}
 
 function fileExists(fileEntry)
@@ -97,7 +72,7 @@ var status_block=document.getElementById("status_block");
 
 checkIfFileExists();
 
-var mymap = L.map('mapid').setView([41.8381203,44.7309707], 13);
+var mymap = L.map('mapid').setView([41.8381203,44.7309707], 14);
 
 BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
         // these options are perfectly ordinary L.TileLayer options
@@ -112,8 +87,7 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
   
 	setTimeout("downtiles()",1000);
-
-   
+	BASe.goOffline();
 }
  document.addEventListener("deviceready", onDeviceReady, false);
 

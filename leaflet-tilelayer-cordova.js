@@ -69,8 +69,8 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                         myself.dirhandle.setMetadata(null, null, { "com.apple.MobileBackup":1});
 
                         // Android's toURL() has a trailing / but iOS does not; better to have 2 than to have 0 !
-//                        myself._url_offline = dirhandle.toURL() + '/' + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
-                        myself._url_offline = dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
+	                    myself._url_offline = dirhandle.toURL() + '/' + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
+    //                    myself._url_offline = dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
 						console.log(dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png');
 						if (success_callback) success_callback();
                     },
