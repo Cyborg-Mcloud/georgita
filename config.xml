@@ -62,16 +62,19 @@
 
     </plugins>
 
+	<feature name="http://api.phonegap.com/1.0/device" />
+		<feature name="http://api.phonegap.com/1.0/device"/>
 
 
 	<feature name="App">
 	  <param name="android-package" value="com.designge.georgita"/>
 	</feature>
-	    <feature name="http://api.phonegap.com/1.0/device"/>
+
+
+
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	<gap:plugin name="cordova-plugin-inappbrowser"  source="npm" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-	<feature name="http://api.phonegap.com/1.0/file" />
 	<gap:plugin name="cordova-plugin-file" source="npm"/>
 	<gap:plugin name="cordova-plugin-file-transfer" source="npm"/>
 
