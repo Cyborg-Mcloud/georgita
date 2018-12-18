@@ -70,9 +70,10 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                         myself.dirhandle.setMetadata(null, null, { "com.apple.MobileBackup":1});
 
                         // Android's toURL() has a trailing / but iOS does not; better to have 2 than to have 0 !
-                        myself._url_offline = dirhandle.toURL() + '/' + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
-						
-						if (success_callback) success_callback();
+//                        myself._url_offline = dirhandle.toURL() + '/' + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
+                        myself._url_offline = dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
+						console.log(dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png');
+						if (success_callback) success_callback(succ){console.log(succ);};
                     },
                     function (error) {
                         if (myself.options.debug) console.log("getDirectory failed (code " + error.code + ")" + options.folder);
@@ -202,7 +203,8 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 		if (dir_is_set==1)
 			{
 			var myself    = this;
-			var filename  = myself.dirhandle.toURL() + '/' + [ myself.options.name, z, x, y ].join('-') + '.png';
+//			var filename  = myself.dirhandle.toURL() + '/' + [ myself.options.name, z, x, y ].join('-') + '.png';
+			var filename  = myself.dirhandle.toURL()  + [ myself.options.name, z, x, y ].join('-') + '.png';
 			var sourceurl = myself._url_online.replace('{z}',z).replace('{x}',x).replace('{y}',y);
 			if (myself.options.subdomains) {
 				var idx   = Math.floor(Math.random() * myself.options.subdomains.length);
@@ -218,7 +220,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 				function(file) {
 					// tile downloaded OK; set the iOS "don't back up" flag then move on
 					file.setMetadata(null, null, { "com.apple.MobileBackup":1 });
-					if (success_callback) success_callback();
+					if (success_callback) success_callback(succ){console.log(succ);};
 				},
 				function(error) {
 					var errmsg;
