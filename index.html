@@ -87,14 +87,14 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
   
 	setTimeout("downtiles()",1000);
-	BASe.goOffline();
+	BASE.goOffline();
 }
  document.addEventListener("deviceready", onDeviceReady, false);
 
 
 function downtiles()
 {
-	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 14, 15);
+	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 12, 17);
  BASE.downloadXYZList(
         // 1st param: a list of XYZ objects indicating tiles to download
         tile_list,
