@@ -18,6 +18,7 @@
   </style>
   <body style='padding:0; border:0; margin:0; '>
   
+  <input id='myinp' value='' onchange='loadimg();'>
 
 
 <div id="mapid" style='border:1px solid red; width:300px; height:300px;'></div>
@@ -28,6 +29,12 @@
 
 
 <script>
+
+function loadimg()
+	{
+		document.getElementById("myimg").src=		document.getElementById("myinp").value;
+
+	}
 var myfolder="";
 function checkIfFileExists()
 	{
@@ -98,7 +105,7 @@ BASE.goOffline();
 	}
 function downtiles()
 {
-	  var tile_list = BASE.calculateXYZListFromPyramid(41.8381203, 44.7309707, 14, 15);
+	  var tile_list = BASE.calculateXYZListFromPyramid(41.8381203, 44.7309707, 13, 15);
  BASE.downloadXYZList(tile_list, true,
       
         function (done,total) {
