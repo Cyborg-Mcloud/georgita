@@ -86,47 +86,39 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
 
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
   
-	setTimeout("downtiles()",1000);
+	setTimeout("offlineze()",1000);
 
 }
  document.addEventListener("deviceready", onDeviceReady, false);
 
 
+function offlineze()
+{
+BASE.goOffline();
+	}
 function downtiles()
 {
 	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 12, 17);
- BASE.downloadXYZList(
-        // 1st param: a list of XYZ objects indicating tiles to download
-        tile_list,
-        // 2nd param: overwrite existing tiles on disk?
-        // if no then a tile already on disk will be kept, which can be a big time saver
-        true,
-        // 3rd param: progress callback
-        // receives the number of tiles downloaded and the number of tiles total
-        // caller can calculate a percentage, update progress bar, etc.
-        // Cancel: if the progress callback returns false (not null or undefined, but false)
-        // then BASE.downloadXYZList() interprets that as a cancel order and will cease downloading tiles
-        // great for a cancel button!
+ BASE.downloadXYZList(tile_list, true,
+      
         function (done,total) {
             var percent = Math.round(100 * done / total);
             status_block.innerHTML = done  + " / " + total + " = " + percent + "%";
         },
-        // 4th param: complete callback
-        // no parameters are given, but we know we're done!
+     
         function () {
-            // for this demo, on success we use another L.TileLayer.Cordova feature and show the disk usage!
+   
             BASE.getDiskUsage(function (filecount,bytes) {
                 var kilobytes = Math.round( bytes / 1024 );
                 status_block.innerHTML = "Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
             });
         },
-        // 5th param: error callback
-        // parameter is the error message string
         function (error) {
             alert("Failed\nError code: " + error.code);
         }
     );
-		BASE.goOffline();
+
+	BASE.goOffline();
 	}
 </script>
 
