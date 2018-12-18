@@ -87,7 +87,7 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
     // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
   
 	setTimeout("downtiles()",1000);
-	BASE.goOffline();
+
 }
  document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -126,6 +126,7 @@ function downtiles()
             alert("Failed\nError code: " + error.code);
         }
     );
+		BASE.goOffline();
 	}
 </script>
 
