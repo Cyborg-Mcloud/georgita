@@ -99,7 +99,7 @@ BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y=
 
 function downtiles()
 {
-	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 14, 18);
+	  var tile_list = BASE.calculateXYZListFromPyramid(41.709455, 44.7551886, 14, 15);
  BASE.downloadXYZList(
         // 1st param: a list of XYZ objects indicating tiles to download
         tile_list,
