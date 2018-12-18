@@ -73,7 +73,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 //                        myself._url_offline = dirhandle.toURL() + '/' + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
                         myself._url_offline = dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
 						console.log(dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png');
-						if (success_callback) success_callback(succ){console.log(succ);};
+						if (success_callback) success_callback();
                     },
                     function (error) {
                         if (myself.options.debug) console.log("getDirectory failed (code " + error.code + ")" + options.folder);
@@ -220,7 +220,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 				function(file) {
 					// tile downloaded OK; set the iOS "don't back up" flag then move on
 					file.setMetadata(null, null, { "com.apple.MobileBackup":1 });
-					if (success_callback) success_callback(succ){console.log(succ);};
+					if (success_callback) success_callback();
 				},
 				function(error) {
 					var errmsg;
