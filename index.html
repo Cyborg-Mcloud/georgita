@@ -18,95 +18,102 @@
   </style>
   <body style='padding:0; border:0; margin:0; '>
   
-  <input id='myinp' value='' onchange='loadimg();'>
+
 
 
 <div id="mapid" style='border:1px solid red; width:300px; height:300px;'></div>
 
+
+<!-- aq icereba ramdeni moqacha, shegizlia display:none uqna -->
 <div id="status_block"></div>
 
-<img id='myimg' src='file:///data/user/0/com.designge.georgita/files/files/tiles//tiles-15-20456-12184.png'>
+
 
 
 <script>
 
-function loadimg()
-	{
-		document.getElementById("myimg").src=		document.getElementById("myinp").value;
-
-	}
 var myfolder="";
-function checkIfFileExists()
+
+function create_tiles_folder()
 	{
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getDirectory("tiles", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
-		console.log(fileSystem);
-		
-
-		} , getFSFail); 
-
+		console.log(fileSystem);} , getFSFail); 
 	}
 
 
 function getFSFail(evt)
 	{
     console.log("shit error");
-	    console.log(evt);
+    console.log(evt);
 	}
 
 function fileExists(fileEntry)
 	{
-		console.log(fileEntry);
-		if (myfolder=="")
-			{
-			myfolder=fileEntry.toURL();
-			}
-
-		console.log(myfolder);
-//		console.log("aris!");
-//	dataex=1;
+	console.log(fileEntry);
+	if (myfolder=="")
+		{
+		myfolder=fileEntry.toURL();
+		}
+	console.log(myfolder);
 	}
+
 function fileDoesNotExist()
 	{
-//		console.log("ar arsebobda");
-//    dataex=0;
+	console.log("ar arsebobda");
 	}
 
 var BASE;
 var status_block=document.getElementById("status_block");
- function onDeviceReady() 
- {
+	
+function onDeviceReady() 
+	{
+	// tiles folderis sheqmna
+	create_tiles_folder();
 
-checkIfFileExists();
+	// rukis gamozaxeba chveulebrivad
+	var mymap = L.map('mapid').setView([41.7117177,44.7604884], 14);
 
-var mymap = L.map('mapid').setView([41.7117177,44.7604884], 14);
-
-BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
-        // these options are perfectly ordinary L.TileLayer options
+	// am online/offline layer-is chakereba
+	BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
         maxZoom: 18,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright/">OpenStreetMap contributors</a>',
-        // these are specific to L.TileLayer.Cordova and mostly specify where to store the tiles on disk
         folder: 'tiles',
         name:   'tiles',
         debug:   true
     }).addTo(mymap);
 
-    // calculate a tile pyramid starting at a lat/lon and going down to a stated range of zoom levels
-  
+	//zaderjka asinqronulobsi gamo, sheamcire tu ginda, mgoni 500-ic eyofa
 	setTimeout("downtiles()",1000);
 
 }
- document.addEventListener("deviceready", onDeviceReady, false);
+
+
+document.addEventListener("deviceready", onDeviceReady, false);
 
 
 function offlineze()
-{
-BASE.goOffline();
+	{
+	// romeli ruka chairtos, offline tu online, aseve xdeba gadartva/garmortva shua mushaobisasac
+
+	BASE.goOffline();
+//	BASE.goOnline();
+
+
 	}
+
+
+
 function downtiles()
-{
-	  var tile_list = BASE.calculateXYZListFromPyramid(41.7117177, 44.7604884, 10, 15);
- BASE.downloadXYZList(tile_list, true,
+	{
+	
+	// ---------------------------------------------- LAT , LONG , START-ZOOM, END ZOOM, piramidas agebs sastarto certilidan da ugrmavdeba qvemot, 
+	//amito rac ufro zeda zooms aigeb jobia, cipa 7-8-9
+	var tile_list = BASE.calculateXYZListFromPyramid(41.7117177, 44.7604884, 5, 15);
+
+	// tilebis downloaderi, tu amas ar gaushveb, download ar moxdeba
+	//tile_list, overwrite:true/false,on progress, on finish, on error)
+	BASE.downloadXYZList(tile_list, true,
       
         function (done,total) {
             var percent = Math.round(100 * done / total);
@@ -125,7 +132,7 @@ function downtiles()
         }
     );
 
-	BASE.goOffline();
+	offlineze();
 	}
 </script>
 
