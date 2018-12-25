@@ -44,6 +44,16 @@
 <div id="status_block15"></div>
 <div id="status_block16"></div>
 
+<div id="status_block17"></div>
+<div id="status_block18"></div>
+<div id="status_block19"></div>
+<div id="status_block20"></div>
+<div id="status_block21"></div>
+<div id="status_block22"></div>
+<div id="status_block23"></div>
+<div id="status_block24"></div>
+<div id="status_block25"></div>
+
 
 
 
@@ -83,7 +93,7 @@ function fileDoesNotExist()
 var BASE;
 
 var status_block=new Array();
-for (i=0;i<16;i++ )
+for (i=0;i<25;i++ )
 	{
 	status_block[i]=document.getElementById("status_block"+i);
 	}
@@ -140,17 +150,17 @@ function downtiles()
 	var end_lat=42.0134336;
 	var end_lng=43.6181009;
 
-	var biji_lat=(end_lat-start_lat)/5;
-	var biji_lng=(end_lng-start_lng)/5;
+	var biji_lat=(end_lat-start_lat)/6;
+	var biji_lng=(end_lng-start_lng)/6;
 
 
-	for (i=0;i<4 ;i++ )
+	for (i=0;i<5 ;i++ )
 		{
-		for (ii=0;ii<4 ;ii++ )
+		for (ii=0;ii<5 ;ii++ )
 			{
 
 		
-			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, start_lng+biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 14, 14);
+			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, start_lng+biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 9, 15);
 
 			BASE.downloadXYZList(i*4+ii, tile_list, true,
 			  
