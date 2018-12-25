@@ -166,7 +166,7 @@ function downtiles()
 			  
 				function (done,total, myblock) {
 					var percent = Math.round(100 * done / total);
-					status_block[myblock].innerHTML = done  + " / " + total + " = " + percent + "%";
+					status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
 				},
 			 
 				function () {
