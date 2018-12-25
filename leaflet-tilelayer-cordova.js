@@ -172,6 +172,27 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 		return xyzlist;
 		
 	},
+
+	calculateXYZListFromBounds_cyborg: function(lat1,lng1,lat2,lng2, zmin, zmax) {
+		
+		var xyzlist = [];
+		for (z = zmin; z <= zmax; z++) 
+			{
+			t1_x = this.getX(lng1, z);
+			t1_y = this.getY(lat1, z);
+			t2_x = this.getX(lng2, z);
+			t2_y = this.getY(lat2, z);
+			for (var x = t1_x; x <= t2_x; x++) {
+				for (var y = t1_y; y <= t2_y; y++) {
+					xyzlist.push({ x:x, y:y, z:z });
+				}
+			}
+				
+		}
+		
+		return xyzlist;
+		
+	},
 	
 	getX: function(lon, z) {
 		return Math.floor((lon+180)/360*Math.pow(2,z));
