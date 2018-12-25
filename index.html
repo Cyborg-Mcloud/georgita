@@ -25,7 +25,10 @@
 
 
 <!-- aq icereba ramdeni moqacha, shegizlia display:none uqna -->
-<div id="status_block"></div>
+<div id="status_block1"></div>
+<div id="status_block2"></div>
+<div id="status_block3"></div>
+<div id="status_block4"></div>
 
 
 
@@ -64,7 +67,10 @@ function fileDoesNotExist()
 	}
 
 var BASE;
-var status_block=document.getElementById("status_block");
+var status_block=document.getElementById("status_block1");
+var status_block2=document.getElementById("status_block2");
+var status_block3=document.getElementById("status_block3");
+var status_block4=document.getElementById("status_block4");
 	
 function onDeviceReady() 
 	{
@@ -110,9 +116,7 @@ function downtiles()
 	// ---------------------------------------------- LAT , LONG , START-ZOOM, END ZOOM, piramidas agebs sastarto certilidan da ugrmavdeba qvemot, 
 	//amito rac ufro zeda zooms aigeb jobia, cipa 7-8-9
 //	var tile_list = BASE.calculateXYZListFromPyramid(42.0486135, 43.6605732, 7, 14);
-	var tile_list = BASE.calculateXYZListFromBounds_cyborg(43.5563062, 40.1139251,41.103544,46.6457899, 14, 14);
-	// tilebis downloaderi, tu amas ar gaushveb, download ar moxdeba
-	//tile_list, overwrite:true/false,on progress, on finish, on error)
+	var tile_list = BASE.calculateXYZListFromBounds_cyborg(43.5563062, 40.1139251,42.0134336,43.6181009, 14, 14);
 	BASE.downloadXYZList(tile_list, true,
       
         function (done,total) {
@@ -125,6 +129,27 @@ function downtiles()
             BASE.getDiskUsage(function (filecount,bytes) {
                 var kilobytes = Math.round( bytes / 1024 );
                 status_block.innerHTML = "Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
+            });
+        },
+        function (error) {
+            alert("Failed\nError code: " + error.code);
+        }
+    );
+
+
+	var tile_list = BASE.calculateXYZListFromBounds_cyborg(42.0134336, 43.6181009,41.103544,46.6457899, 14, 14);
+	BASE.downloadXYZList(tile_list, true,
+      
+        function (done,total) {
+            var percent = Math.round(100 * done / total);
+            status_block2.innerHTML = done  + " / " + total + " = " + percent + "%";
+        },
+     
+        function () {
+   
+            BASE.getDiskUsage(function (filecount,bytes) {
+                var kilobytes = Math.round( bytes / 1024 );
+                status_block2.innerHTML = "Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
             });
         },
         function (error) {
