@@ -160,7 +160,13 @@ function full_updater()
 		full_proc+=procents[i];
 		}
 	full_proc=full_proc/49;
-	document.getElementById("infodiv").innerHTML="full: "+full_proc+"%";
+	document.getElementById("infodiv").innerHTML="full: "+full_proc+"% = ";
+
+
+	 BASE.getDiskUsage(function (filecount,bytes) {
+                var kilobytes = Math.round( bytes / 1024 );
+               document.getElementById("infodiv").innerHTML+=filecount+ " / "+kilobytes;
+            });
 	setTimeout("full_updater();",500);
 	}
 
