@@ -173,7 +173,7 @@ function downtiles()
 		   
 					BASE.getDiskUsage(function (filecount,bytes,myblock) {
 						var kilobytes = Math.round( bytes / 1024 );
-						status_block[myblock].innerHTML = "Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
+						status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
 					});
 				},
 				function (error) {
