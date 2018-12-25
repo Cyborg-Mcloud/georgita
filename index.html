@@ -115,7 +115,7 @@ function onDeviceReady()
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright/">OpenStreetMap contributors</a>',
         folder: 'tiles',
         name:   'tiles',
-        debug:   true
+        debug:   false
     }).addTo(mymap);
 
 	//zaderjka asinqronulobsi gamo, sheamcire tu ginda, mgoni 500-ic eyofa
@@ -185,6 +185,7 @@ function downtiles()
 				function (done,total, myblock) {
 					var percent = Math.round(100 * done / total);
 					status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
+					procents[myblock]=percent;
 				},
 			 
 				function () {

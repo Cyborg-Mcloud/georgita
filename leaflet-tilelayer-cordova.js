@@ -54,7 +54,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
         if (myself.options.debug) console.log("Opening filesystem");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,  function (fshandle) 
 				{
-				console.log(fshandle);
+				//console.log(fshandle);
                 if (myself.options.debug) console.log("requestFileSystem OK " + options.folder);
                 myself.fshandle = fshandle;
                 myself.fshandle.root.getDirectory(
@@ -62,7 +62,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                     { create:true, exclusive:false },
                     function (dirhandle) 
 						{
-						console.log(dirhandle);
+						//console.log(dirhandle);
                         if (myself.options.debug) console.log("getDirectory OK " + options.folder);
                         myself.dirhandle = dirhandle;
 						dir_is_set=1;
@@ -71,7 +71,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                         // Android's toURL() has a trailing / but iOS does not; better to have 2 than to have 0 !
 	                    myself._url_offline = dirhandle.toURL() + '/' + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
     //                    myself._url_offline = dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png';
-						console.log(dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png');
+						//console.log(dirhandle.toURL()  + [ myself.options.name,'{z}','{x}','{y}' ].join('-') + '.png');
 						if (success_callback) success_callback();
                     },
                     function (error) {
@@ -219,7 +219,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
     },
 
     downloadAndStoreTile: function (x,y,z,success_callback,error_callback) {
-		console.log("download and store "+dir_is_set);
+		//console.log("download and store "+dir_is_set);
 		if (dir_is_set==1)
 			{
 			var myself    = this;
@@ -289,7 +289,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
             }
             function yesReally() 
 				{
-				console.log("vizaxeb");
+		//		console.log("vizaxeb");
                 myself.downloadAndStoreTile(
                     x,y,z,
                     doneWithIt,
@@ -322,7 +322,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 
             }
         }
-		console.log("runThisOneByIndex bolodan");
+//		console.log("runThisOneByIndex bolodan");
         runThisOneByIndex(xyzlist,0,progress_callback,complete_callback,error_callback, myblock);
     },
 
