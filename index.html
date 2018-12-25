@@ -143,13 +143,16 @@ function downtiles()
 	var biji_lat=(end_lat-start_lat)/5;
 	var biji_lng=(end_lng-start_lng)/5;
 
+	console.log(
+
 	for (i=0;i<4 ;i++ )
 		{
 		for (ii=0;ii<4 ;ii++ )
 			{
 
 		
-			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 14, 14);
+			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, start_lng+biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 14, 14);
+
 			BASE.downloadXYZList(i*4+ii, tile_list, true,
 			  
 				function (done,total, myblock) {
