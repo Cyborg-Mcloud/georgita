@@ -261,10 +261,10 @@ L.TileLayer.Cordova = L.TileLayer.extend({
 		}
     },
 
-    downloadXYZList: function (xyzlist,overwrite,progress_callback,complete_callback,error_callback) {
+    downloadXYZList: function (myblock, xyzlist,overwrite,progress_callback,complete_callback,error_callback) {
         var myself = this;
 
-        function runThisOneByIndex(xyzs,index,cbprog,cbdone,cberr) {
+        function runThisOneByIndex(xyzs,index,cbprog,cbdone,cberr, myblock) {
             var x = xyzs[index].x;
             var y = xyzs[index].y;
             var z = xyzs[index].z;
@@ -275,14 +275,14 @@ L.TileLayer.Cordova = L.TileLayer.extend({
                 // the download was skipped and not an error, so call the progress callback; then either move on to the next one, or else call our success callback
                 // if the progress callback returns false (not null, not undefiend... false) then do not proceed to the next tile; this allows cancellation from the caller code
                 if (cbprog) {
-                    var keepgoing = cbprog(index,xyzs.length);
+                    var keepgoing = cbprog(index,xyzs.length,myblock);
                     if (keepgoing === false) {
                         return;
                     }
                 }
 
                 if (index+1 < xyzs.length) {
-                    runThisOneByIndex(xyzs,index+1,cbprog,cbdone,cberr);
+                    runThisOneByIndex(xyzs,index+1,cbprog,cbdone,cberr, myblock);
                 } else {
                     if (cbdone) cbdone();
                 }
@@ -323,7 +323,7 @@ L.TileLayer.Cordova = L.TileLayer.extend({
             }
         }
 		console.log("runThisOneByIndex bolodan");
-        runThisOneByIndex(xyzlist,0,progress_callback,complete_callback,error_callback);
+        runThisOneByIndex(xyzlist,0,progress_callback,complete_callback,error_callback, myblock);
     },
 
     /*

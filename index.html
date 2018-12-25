@@ -150,18 +150,18 @@ function downtiles()
 
 		
 			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 14, 14);
-			BASE.downloadXYZList(tile_list, true,
+			BASE.downloadXYZList(i*4+ii, tile_list, true,
 			  
-				function (done,total) {
+				function (done,total, myblock) {
 					var percent = Math.round(100 * done / total);
-					status_block[i*4+ii].innerHTML = done  + " / " + total + " = " + percent + "%";
+					status_block[myblock].innerHTML = done  + " / " + total + " = " + percent + "%";
 				},
 			 
 				function () {
 		   
-					BASE.getDiskUsage(function (filecount,bytes) {
+					BASE.getDiskUsage(function (filecount,bytes,myblock) {
 						var kilobytes = Math.round( bytes / 1024 );
-						status_block[i*4+ii].innerHTML = "Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
+						status_block[myblock].innerHTML = "Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
 					});
 				},
 				function (error) {
