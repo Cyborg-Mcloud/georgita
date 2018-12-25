@@ -164,11 +164,8 @@ function full_updater()
 	document.getElementById("infodiv").innerHTML="full: "+full_proc+"% = ";
 
 
-	 BASE.getDiskUsage(function (filecount,bytes) {
-                var kilobytes = Math.round( bytes / 1024 );
-               document.getElementById("infodiv").innerHTML+=filecount+ " / "+kilobytes;
-            });
-	setTimeout("full_updater();",500);
+	
+	setTimeout("full_updater();",1000);
 	}
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -220,7 +217,7 @@ function downtiles()
 			  
 				function (done,total, myblock) {
 					var percent = Math.round(100 * done / total);
-					status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
+			//		status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
 					procents[myblock]=percent;
 				},
 			 
