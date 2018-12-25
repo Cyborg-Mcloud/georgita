@@ -26,7 +26,7 @@
 
 <!-- aq icereba ramdeni moqacha, shegizlia display:none uqna -->
 
-
+<div id="status_block0"></div>
 <div id="status_block1"></div>
 <div id="status_block2"></div>
 <div id="status_block3"></div>
@@ -95,7 +95,7 @@ var BASE;
 var status_block=new Array();
 for (i=0;i<25;i++ )
 	{
-	status_block[i]=document.getElementById("status_block"+i);
+	status_block[i]=document.getElementById("status_block"+(i+1));
 	}
 	
 function onDeviceReady() 
