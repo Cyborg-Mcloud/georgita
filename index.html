@@ -162,7 +162,7 @@ function downtiles()
 		
 			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, start_lng+biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 9, 15);
 
-			BASE.downloadXYZList(i*4+ii, tile_list, true,
+			BASE.downloadXYZList(i*5+ii, tile_list, true,
 			  
 				function (done,total, myblock) {
 					var percent = Math.round(100 * done / total);
