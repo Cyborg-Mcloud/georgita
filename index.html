@@ -321,6 +321,11 @@ mln[1][6]=end_lng;
 						status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
 						procents[myblock]=percent;
 						totals[myblock]=total;
+						if (percent==100)
+							{
+							BASE.goOnline();
+							BASE.goOffline();
+							}
 					},
 				 
 					function (myblock) {
