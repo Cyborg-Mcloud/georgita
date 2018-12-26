@@ -206,50 +206,87 @@ function downtiles()
 	var end_lat=41.0529353;
 	var end_lng=46.6680674;
 
-	var biji_lat=(end_lat-start_lat)/8;
-	var biji_lng=(end_lng-start_lng)/8;
+	var biji_lat=(end_lat-start_lat)/7;
+	var biji_lng=(end_lng-start_lng)/7;
 
 	var mla=new Array();
 	var mln=new Array();
+	var mzm=new Array();
 	for (i=0;i<8 ;i++ )
 		{
+		mzm[i]=new Array();
 		for (ii=0;ii<8 ;ii++ )
 			{
 			mla[i]=start_lat+biji_lat*i;
 			mln[ii]=start_lng+biji_lng*ii;
+			mzm[i][ii]=14;
 			}
 		}
 	console.log(mla);
 	console.log(mln);
+	
+	mzm[0][0]=13;
+	mzm[1][0]=13;
+	mzm[2][0]=0;
+	mzm[3][0]=0;
+	mzm[4][0]=0;
+	mzm[5][0]=0;
+	mzm[6][0]=0;
 
+	mzm[0][1]=13;
+	mzm[1][1]=13;
+	mzm[4][1]=0;
+	mzm[5][1]=0;
+	mzm[6][1]=0;
 
+	mzm[0][2]=0;
+	mzm[6][2]=0;
+
+	mzm[0][3]=0;
+	mzm[0][3]=13;
+	mzm[6][3]=0;
+
+	mzm[0][4]=0;
+	mzm[0][5]=0;
+
+	mzm[0][6]=0;
+	mzm[1][6]=0;
+	mzm[2][6]=0;
+	mzm[5][6]=13;
+	mzm[6][6]=13;
+
+	console.log(mzm);
+	
 	for (i=0;i<7 ;i++ )
 		{
 		for (ii=0;ii<7 ;ii++ )
 			{
+			if (mzm[i][ii]>0)
+				{
+				
+				console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
+				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i], mln[ii],mla[i+1],mln[ii+1], 13, mzm[i][ii]);
 
-			console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
-			var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i], mln[ii],mla[i+1],mln[ii+1], 13, 15);
-
-			BASE.downloadXYZList(i*7+ii, tile_list, true,
-			  
-				function (done,total, myblock) {
-					var percent = Math.round(100 * done / total);
-					status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
-					procents[myblock]=percent;
-				},
-			 
-				function () {
-		   
-					BASE.getDiskUsage(function (filecount,bytes,myblock) {
-						var kilobytes = Math.round( bytes / 1024 );
-						status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
-					});
-				},
-				function (error) {
-					alert("Failed\nError code: " + error.code);
-					}
-				);
+				BASE.downloadXYZList(i*7+ii, tile_list, true,
+				  
+					function (done,total, myblock) {
+						var percent = Math.round(100 * done / total);
+						status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
+						procents[myblock]=percent;
+					},
+				 
+					function () {
+			   
+						BASE.getDiskUsage(function (filecount,bytes,myblock) {
+							var kilobytes = Math.round( bytes / 1024 );
+							status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
+						});
+					},
+					function (error) {
+						alert("Failed\nError code: " + error.code);
+						}
+					);
+				}
 			}
 		}
 
