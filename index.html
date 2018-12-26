@@ -301,6 +301,10 @@ function downtiles()
 				 
 					function () {
 			   			status_block[myblock].innerHTML = myblock+" : Done";
+						BASE.goOnline();
+						BASE.goOffline();
+						
+
 						//BASE.getDiskUsage(function (filecount,bytes) {
 						//	var kilobytes = Math.round( bytes / 1024 );
 //							status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
