@@ -92,6 +92,20 @@
 var procents=new Array();
 var myfolder="";
 
+
+var BASE;
+
+var status_block=new Array();
+for (i=0;i<49;i++ )
+	{
+	status_block[i]=document.getElementById("status_block"+(i+1));
+	procents[i]=0;
+	}
+
+
+
+
+
 function create_tiles_folder()
 	{
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -121,14 +135,6 @@ function fileDoesNotExist()
 	console.log("ar arsebobda");
 	}
 
-var BASE;
-
-var status_block=new Array();
-for (i=0;i<49;i++ )
-	{
-	status_block[i]=document.getElementById("status_block"+(i+1));
-	procents[i]=0;
-	}
 	
 function onDeviceReady() 
 	{
@@ -204,20 +210,33 @@ function downtiles()
 	var biji_lat=(end_lat-start_lat)/8;
 	var biji_lng=(end_lng-start_lng)/8;
 
+	var mla=new Array();
+	var mln=new Array();
+	for (i=0;i<8 ;i++ )
+		{
+		for (ii=0;ii<8 ;ii++ )
+			{
+			mla[i]=start_lat+biji_lat*i;
+			mln[ii]=start_lng+biji_lng*ii;
+			}
+		}
+	console.log(mla);
+	console.log(mln);
+
 
 	for (i=0;i<7 ;i++ )
 		{
 		for (ii=0;ii<7 ;ii++ )
 			{
 
-			console.log(start_lat+biji_lat*i + " - "+ start_lng+biji_lng*ii + " /  "+start_lat+biji_lat*(i+1) + " - "+start_lng+biji_lng*(ii+1) );
-			var tile_list = BASE.calculateXYZListFromBounds_cyborg(start_lat+biji_lat*i, start_lng+biji_lng*ii,start_lat+biji_lat*(i+1),start_lng+biji_lng*(ii+1), 13, 15);
+			console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
+			var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i], mln[ii],mla[i+1],mln[ii+1], 13, 15);
 
 			BASE.downloadXYZList(i*7+ii, tile_list, true,
 			  
 				function (done,total, myblock) {
 					var percent = Math.round(100 * done / total);
-			//		status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
+					status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
 					procents[myblock]=percent;
 				},
 			 
