@@ -165,10 +165,13 @@ function full_updater()
 	var full_total=0;
 	for (i=0;i<49;i++ )
 		{
-		full_proc+=procents[i];
-		full_total+=totals[i];
+		if (procents[i]>0)
+			{
+			full_proc+=procents[i];
+			full_total+=totals[i];
+			}
 		}
-	full_proc=full_proc/49;
+	full_proc=full_proc/sul_threads;
 	document.getElementById("infodiv").innerHTML="full: "+full_proc+"% = "+full_total;
 
 
@@ -193,7 +196,7 @@ function offlineze()
 
 
 
-
+var sul_threads=0;
 
 function downtiles()
 	{
@@ -283,7 +286,7 @@ function downtiles()
 			{
 			if (mzm[i][ii]>0)
 				{
-				
+				sul_threads++;
 				console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
 				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i], mln[ii],mla[i+1],mln[ii+1], 13, mzm[i][ii]);
 
@@ -298,9 +301,9 @@ function downtiles()
 				 
 					function () {
 			   
-						BASE.getDiskUsage(function (filecount,bytes,myblock) {
+						BASE.getDiskUsage(function (filecount,bytes) {
 							var kilobytes = Math.round( bytes / 1024 );
-							status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
+//							status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
 						});
 					},
 					function (error) {
