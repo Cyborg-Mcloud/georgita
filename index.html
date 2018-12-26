@@ -303,7 +303,7 @@ mla[1][6]=end_lng;
 	
 	console.log(mzm);
 
-	
+
 	for (ii=0;ii<7 ;ii++ )
 		{
 		for (i=0;i<7 ;i++ )
@@ -311,7 +311,7 @@ mla[1][6]=end_lng;
 			if (mzm[i][ii]>0)
 				{
 				sul_threads++;
-				console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
+				console.log(mla[i][ii] + " - "+ mln[i][ii] + " /  "+mla[i+1][ii+1] + " - "+mln[i+1][ii+1] +" | "  +zm_st[i][ii] + " / "+mzm[i][ii]);
 				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i][ii], mln[i][ii],mla[i+1][ii+1],mln[i+1][ii+1], zm_st[i][ii], mzm[i][ii]);
 
 				BASE.downloadXYZList(ii*7+i, tile_list, true,
