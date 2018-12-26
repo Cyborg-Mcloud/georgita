@@ -219,15 +219,22 @@ function downtiles()
 	var mln=new Array();
 	var mzm=new Array();
 
+	var mlst= new Array();
+
 	var zm_st=new Array();
 	for (i=0;i<8 ;i++ )
 		{
+		mla[i]=new Array();
+		mln[i]=new Array();
+
 		mzm[i]=new Array();
 		zm_st[i]=new Array();
 		for (ii=0;ii<8 ;ii++ )
 			{
-			mla[i]=start_lat+biji_lat*i;
-			mln[ii]=start_lng+biji_lng*ii;
+			mla[i][ii]=start_lat+biji_lat*i;
+			mln[i][ii]=start_lng+biji_lng*ii;
+
+
 			mzm[i][ii]=14;
 			zm_st[i][ii]=13;
 			}
@@ -305,7 +312,7 @@ mla[1][6]=end_lng;
 				{
 				sul_threads++;
 				console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
-				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i], mln[ii],mla[i+1],mln[ii+1], zm_st[i][ii], mzm[i][ii]);
+				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i][ii], mln[i][ii],mla[i+1][ii+1],mln[i+1][ii+1], zm_st[i][ii], mzm[i][ii]);
 
 				BASE.downloadXYZList(ii*7+i, tile_list, true,
 				  
