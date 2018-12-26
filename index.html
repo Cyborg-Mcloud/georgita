@@ -91,7 +91,7 @@
 <script>
 var procents=new Array();
 var myfolder="";
-
+var totals=new Array();
 
 var BASE;
 
@@ -162,12 +162,14 @@ function onDeviceReady()
 function full_updater()
 	{
 	var full_proc=0;
+	var full_total=0;
 	for (i=0;i<49;i++ )
 		{
 		full_proc+=procents[i];
+		full_total+=totals[i];
 		}
 	full_proc=full_proc/49;
-	document.getElementById("infodiv").innerHTML="full: "+full_proc+"% = ";
+	document.getElementById("infodiv").innerHTML="full: "+full_proc+"% = "+full_total;
 
 
 	
@@ -291,6 +293,7 @@ function downtiles()
 						var percent = Math.round(100 * done / total);
 						status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
 						procents[myblock]=percent;
+						totals[myblock]=total;
 					},
 				 
 					function () {
