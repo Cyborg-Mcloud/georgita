@@ -327,12 +327,12 @@ function downtiles()
 	mla[5][1]=start_lat;
 	mln[5][1]=start_lng+(end_lng-start_lng)/2;
 	mla_e[5][1]=start_lat+(end_lat-start_lat)/2;
-	mln_e[5][1]=start_lng;
+	mln_e[5][1]=end_lng;
 
 	mla[6][1]=start_lat+(end_lat-start_lat)/2;
 	mln[6][1]=start_lng+(end_lng-start_lng)/2;
-	mla_e[6][1]=start_lat;
-	mln_e[6][1]=start_lng;
+	mla_e[6][1]=end_lat;
+	mln_e[6][1]=end_lng;
 
 
 	console.log("mla da mln");
@@ -374,10 +374,10 @@ function downtiles()
 							}
 					},
 				 
-					function (myblock) {
-			   			status_block[myblock].innerHTML = myblock+" : Done";
+					function () {
+//			   			status_block[myblock].innerHTML = myblock+" : Done";
 					//	BASE.goOnline();
-						BASE.goOffline();
+						//BASE.goOffline();
 						
 
 						//BASE.getDiskUsage(function (filecount,bytes) {
