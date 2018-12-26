@@ -152,10 +152,11 @@ function onDeviceReady()
         name:   'tiles',
         debug:   false
     }).addTo(mymap);
+setTimeout("offlineze()",1000);
 
 	//zaderjka asinqronulobsi gamo, sheamcire tu ginda, mgoni 500-ic eyofa
 //	setTimeout("downtiles()",1000);
-	setTimeout("full_updater();",1000);
+
 
 }
 
@@ -332,7 +333,8 @@ mla[1][6]=end_lng;
 		}
 
 
-	offlineze();
+	
+		setTimeout("full_updater();",1000);
 	}
 
 
