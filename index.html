@@ -217,6 +217,12 @@ function downtiles()
 
 	var mla=new Array();
 	var mln=new Array();
+
+	var mla_e=new Array();
+	var mln_e=new Array();
+
+
+
 	var mzm=new Array();
 
 	var mlst= new Array();
@@ -227,12 +233,19 @@ function downtiles()
 		mla[i]=new Array();
 		mln[i]=new Array();
 
+		mla_e[i]=new Array();
+		mln_e[i]=new Array();
+
+
 		mzm[i]=new Array();
 		zm_st[i]=new Array();
 		for (ii=0;ii<8 ;ii++ )
 			{
 			mla[i][ii]=start_lat+biji_lat*i;
 			mln[i][ii]=start_lng+biji_lng*ii;
+
+			mla_e[i][ii]=start_lat+biji_lat*(i+1);
+			mln_e[i][ii]=start_lng+biji_lng*(ii+1);
 
 
 			mzm[i][ii]=14;
@@ -289,16 +302,39 @@ function downtiles()
 	mzm[7][7]=0;
 
 
-zm_st[0][5]=6;
-mzm[0][5]=12;
+	zm_st[0][5]=6;
+	mzm[0][5]=12;
 
-mla[0][5]=start_lat;
-mln[0][5]=start_lng;
-mla[1][6]=end_lat;
-mln[1][6]=end_lng;
+	mla[5][0]=start_lat;
+	mln[5][0]=start_lng;
+	mla_e[5][0]=start_lat+(end_lat-start_lat)/2;
+	mln_e[5][0]=start_lng+(end_lng-start_lng)/2;
 
+	mla[6][0]=start_lat+(end_lat-start_lat)/2;
+	mln[6][0]=start_lng;
+	mla_e[6][0]=end_lat;
+	mln_e[6][0]=start_lng+(end_lng-start_lng)/2;
+
+	mla[5][1]=start_lat;
+	mln[5][1]=start_lng+(end_lng-start_lng)/2;
+	mla_e[5][1]=start_lat+(end_lat-start_lat)/2;
+	mln_e[5][1]=start_lng;
+
+	mla[6][1]=start_lat+(end_lat-start_lat)/2;
+	mln[6][1]=start_lng+(end_lng-start_lng)/2;
+	mla_e[6][1]=start_lat;
+	mln_e[6][1]=start_lng;
+
+	console.log("mla da mln");
 	console.log(mla);
 	console.log(mln);
+	console.log("mla_end da mln_end ");
+	console.log(mla_e);
+	console.log(mln_e);
+
+
+
+	console.log("zoomebi");
 	console.log(zm_st);
 	
 	console.log(mzm);
@@ -311,8 +347,8 @@ mln[1][6]=end_lng;
 			if (mzm[i][ii]>0)
 				{
 				sul_threads++;
-				console.log(mla[i][ii] + " - "+ mln[i][ii] + " /  "+mla[i+1][ii+1] + " - "+mln[i+1][ii+1] +" | "  +zm_st[i][ii] + " / "+mzm[i][ii]);
-				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i][ii], mln[i][ii],mla[i+1][ii+1],mln[i+1][ii+1], zm_st[i][ii], mzm[i][ii]);
+				console.log(mla[i][ii] + " - "+ mln[i][ii] + " /  "+mla_e[i][ii] + " - "+mln_e[i][ii] +" | "  +zm_st[i][ii] + " / "+mzm[i][ii]);
+				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i][ii], mln[i][ii],mla_e[i][ii],mln[i][ii], zm_st[i][ii], mzm[i][ii]);
 
 				BASE.downloadXYZList(ii*7+i, tile_list, true,
 				  
