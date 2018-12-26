@@ -243,7 +243,7 @@ function downtiles()
 	mzm[6][2]=0;
 
 	mzm[0][3]=0;
-	mzm[0][3]=13;
+	mzm[4][3]=13;
 	mzm[6][3]=0;
 
 	mzm[0][4]=0;
@@ -255,11 +255,29 @@ function downtiles()
 	mzm[5][6]=13;
 	mzm[6][6]=13;
 
+	mzm[0][7]=0;
+	mzm[1][7]=0;
+	mzm[2][7]=0;
+	mzm[3][7]=0;
+	mzm[4][7]=0;
+	mzm[5][7]=0;
+	mzm[6][7]=0;
+
+	mzm[7][0]=0;
+	mzm[7][1]=0;
+	mzm[7][2]=0;
+	mzm[7][3]=0;
+	mzm[7][4]=0;
+	mzm[7][5]=0;
+	mzm[7][6]=0;
+	mzm[7][7]=0;
+
+
 	console.log(mzm);
 	
-	for (i=0;i<7 ;i++ )
+	for (ii=0;ii<7 ;ii++ )
 		{
-		for (ii=0;ii<7 ;ii++ )
+		for (i=0;i<7 ;i++ )
 			{
 			if (mzm[i][ii]>0)
 				{
@@ -267,7 +285,7 @@ function downtiles()
 				console.log(mla[i] + " - "+ mln[i] + " /  "+mla[i+1] + " - "+mln[i+1] );
 				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i], mln[ii],mla[i+1],mln[ii+1], 13, mzm[i][ii]);
 
-				BASE.downloadXYZList(i*7+ii, tile_list, true,
+				BASE.downloadXYZList(ii*7+i, tile_list, true,
 				  
 					function (done,total, myblock) {
 						var percent = Math.round(100 * done / total);
