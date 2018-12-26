@@ -25,7 +25,7 @@
 
 
 <!-- aq icereba ramdeni moqacha, shegizlia display:none uqna -->
-
+<input type='button' onclick='downtiles();' value='Download'>
 <div id="infodiv"></div>
 
 <div id="status_block0"></div>
@@ -154,7 +154,7 @@ function onDeviceReady()
     }).addTo(mymap);
 
 	//zaderjka asinqronulobsi gamo, sheamcire tu ginda, mgoni 500-ic eyofa
-	setTimeout("downtiles()",1000);
+//	setTimeout("downtiles()",1000);
 	setTimeout("full_updater();",1000);
 
 }
