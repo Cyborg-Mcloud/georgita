@@ -296,15 +296,15 @@ function downtiles()
 						var percent = Math.round(100 * done / total);
 						status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
 						procents[myblock]=percent;
-						totals[myblock]=total;
+					//	totals[myblock]=total;
 					},
 				 
 					function () {
-			   
-						BASE.getDiskUsage(function (filecount,bytes) {
-							var kilobytes = Math.round( bytes / 1024 );
+			   			status_block[myblock].innerHTML = myblock+" : Done";
+						//BASE.getDiskUsage(function (filecount,bytes) {
+						//	var kilobytes = Math.round( bytes / 1024 );
 //							status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
-						});
+				//		});
 					},
 					function (error) {
 						alert("Failed\nError code: " + error.code);
