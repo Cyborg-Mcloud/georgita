@@ -142,7 +142,7 @@ function onDeviceReady()
 	create_tiles_folder();
 
 	// rukis gamozaxeba chveulebrivad
-	var mymap = L.map('mapid').setView([42.0486135,43.6605732], 14);
+	var mymap = L.map('mapid').setView([42.0486135,43.6605732], 13);
 
 	// am online/offline layer-is chakereba
 	BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
@@ -152,7 +152,7 @@ function onDeviceReady()
         name:   'tiles',
         debug:   false
     }).addTo(mymap);
-setTimeout("offlineze()",1000);
+	setTimeout("offlineze()",1000);
 
 	//zaderjka asinqronulobsi gamo, sheamcire tu ginda, mgoni 500-ic eyofa
 //	setTimeout("downtiles()",1000);
