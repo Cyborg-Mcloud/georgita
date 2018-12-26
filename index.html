@@ -313,9 +313,9 @@ mla[1][6]=end_lng;
 						totals[myblock]=total;
 					},
 				 
-					function () {
+					function (myblock) {
 			   			status_block[myblock].innerHTML = myblock+" : Done";
-						BASE.goOnline();
+					//	BASE.goOnline();
 						BASE.goOffline();
 						
 
