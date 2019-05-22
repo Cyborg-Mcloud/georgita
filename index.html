@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta http-equiv="Content-Security-Policy" content="img-src * 'self' data: https: file:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; default-src *; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Georgita</title>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-
-
- <link rel="stylesheet" href="leaf/leaflet.css" crossorigin=""/>
-<script src="leaf/leaflet.js" crossorigin=""></script>
-<script src="leaflet-tilelayer-cordova.js"></script>
   </head>
   <style>
 	
@@ -19,384 +13,32 @@
   <body style='padding:0; border:0; margin:0; '>
   
 
-
-
-<div id="mapid" style='border:1px solid red; width:300px; height:300px;'></div>
-
-
-<!-- aq icereba ramdeni moqacha, shegizlia display:none uqna -->
-<input type='button' onclick='downtiles();' value='Download'>
-<div id="infodiv"></div>
-
-<div id="status_block0"></div>
-<div id="status_block1"></div>
-<div id="status_block2"></div>
-<div id="status_block3"></div>
-<div id="status_block4"></div>
-<div id="status_block5"></div>
-<div id="status_block6"></div>
-<div id="status_block7"></div>
-<div id="status_block8"></div>
-<div id="status_block9"></div>
-
-<div id="status_block10"></div>
-<div id="status_block11"></div>
-<div id="status_block12"></div>
-<div id="status_block13"></div>
-<div id="status_block14"></div>
-<div id="status_block15"></div>
-<div id="status_block16"></div>
-
-<div id="status_block17"></div>
-<div id="status_block18"></div>
-<div id="status_block19"></div>
-
-<div id="status_block20"></div>
-<div id="status_block21"></div>
-<div id="status_block22"></div>
-<div id="status_block23"></div>
-<div id="status_block24"></div>
-<div id="status_block25"></div>
-<div id="status_block26"></div>
-<div id="status_block27"></div>
-<div id="status_block28"></div>
-<div id="status_block29"></div>
-
-<div id="status_block30"></div>
-<div id="status_block31"></div>
-<div id="status_block32"></div>
-<div id="status_block33"></div>
-<div id="status_block34"></div>
-<div id="status_block35"></div>
-<div id="status_block36"></div>
-<div id="status_block37"></div>
-<div id="status_block38"></div>
-<div id="status_block39"></div>
-
-<div id="status_block40"></div>
-<div id="status_block41"></div>
-<div id="status_block42"></div>
-<div id="status_block43"></div>
-<div id="status_block44"></div>
-<div id="status_block45"></div>
-<div id="status_block46"></div>
-<div id="status_block47"></div>
-<div id="status_block48"></div>
-<div id="status_block49"></div>
-
-
-
-
-
 <script>
-var procents=new Array();
-var myfolder="";
-var totals=new Array();
-
-var BASE;
-
-var status_block=new Array();
-for (i=0;i<49;i++ )
-	{
-	status_block[i]=document.getElementById("status_block"+(i+1));
-	procents[i]=0;
-	}
 
 
 
-
-
-function create_tiles_folder()
-	{
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-		fileSystem.root.getDirectory("tiles", {create: true, exclusive: false}, fileExists, fileDoesNotExist);
-		console.log(fileSystem);} , getFSFail); 
-	}
-
-
-function getFSFail(evt)
-	{
-    console.log("shit error");
-    console.log(evt);
-	}
-
-function fileExists(fileEntry)
-	{
-	console.log(fileEntry);
-	if (myfolder=="")
-		{
-		myfolder=fileEntry.toURL();
-		}
-	console.log(myfolder);
-	}
-
-function fileDoesNotExist()
-	{
-	console.log("ar arsebobda");
-	}
-
-	
 function onDeviceReady() 
 	{
-	// tiles folderis sheqmna
-	create_tiles_folder();
+		StatusBar.backgroundColorByHexString('#16810e');
+    document.removeEventListener('deviceready', onDeviceReady, false);
 
-	// rukis gamozaxeba chveulebrivad
-	var mymap = L.map('mapid').setView([42.0486135,43.6605732], 13);
+	console.log("device ready");
 
-	// am online/offline layer-is chakereba
-	BASE = L.tileLayerCordova('https://mts1.google.com/vt/hl=en&s=ge&lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 18,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright/">OpenStreetMap contributors</a>',
-        folder: 'tiles',
-        name:   'tiles',
-        debug:   false
-    }).addTo(mymap);
-	setTimeout("offlineze()",1000);
+	setTimeout("StartWebView();",100); 
+    }
 
-	//zaderjka asinqronulobsi gamo, sheamcire tu ginda, mgoni 500-ic eyofa
-//	setTimeout("downtiles()",1000);
-
-
-}
-
-function full_updater()
-	{
-	var full_proc=0;
-	var full_total=0;
-	for (i=0;i<49;i++ )
-		{
-		if (procents[i]>0)
-			{
-			full_proc+=procents[i];
-			full_total+=totals[i];
-			}
-		}
-	full_proc=full_proc/sul_threads;
-	document.getElementById("infodiv").innerHTML="full: "+full_proc+"% = "+full_total;
-
-
-	
-	setTimeout("full_updater();",1000);
-	}
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 
-function offlineze()
+function StartWebView()
 	{
-	// romeli ruka chairtos, offline tu online, aseve xdeba gadartva/garmortva shua mushaobisasac
-
-	BASE.goOffline();
-//	BASE.goOnline();
+	var url='https://georgita.ge/?myid='+Math.random()*10000000;
+	console.log(url);
+	//ref = cordova.InAppBrowser.open(url, '_system', 'location=no, clearcache=yes');
+	window.location=url;
 	}
 
-
-//43.0182198,40.6094804
-
-
-
-
-var sul_threads=0;
-
-function downtiles()
-	{
-	
-	// ---------------------------------------------- LAT , LONG , START-ZOOM, END ZOOM, piramidas agebs sastarto certilidan da ugrmavdeba qvemot, 
-	//amito rac ufro zeda zooms aigeb jobia, cipa 7-8-9
-//	var tile_list = BASE.calculateXYZListFromPyramid(42.0486135, 43.6605732, 7, 14);
-
-
-	var start_lat=43.5855861;
-	var start_lng=40.0288493;
-	var end_lat=41.0529353;
-	var end_lng=46.6680674;
-
-	var biji_lat=(end_lat-start_lat)/7;
-	var biji_lng=(end_lng-start_lng)/7;
-
-	var mla=new Array();
-	var mln=new Array();
-
-	var mla_e=new Array();
-	var mln_e=new Array();
-
-
-
-	var mzm=new Array();
-
-	var mlst= new Array();
-
-	var zm_st=new Array();
-	for (i=0;i<8 ;i++ )
-		{
-		mla[i]=new Array();
-		mln[i]=new Array();
-
-		mla_e[i]=new Array();
-		mln_e[i]=new Array();
-
-
-		mzm[i]=new Array();
-		zm_st[i]=new Array();
-		for (ii=0;ii<8 ;ii++ )
-			{
-			mla[i][ii]=start_lat+biji_lat*i;
-			mln[i][ii]=start_lng+biji_lng*ii;
-
-			mla_e[i][ii]=start_lat+biji_lat*(i+1);
-			mln_e[i][ii]=start_lng+biji_lng*(ii+1);
-
-
-			mzm[i][ii]=14;
-			zm_st[i][ii]=13;
-			}
-		}
-	
-	
-	mzm[0][0]=13;
-	mzm[1][0]=13;
-	mzm[2][0]=0;
-	mzm[3][0]=0;
-	mzm[4][0]=0;
-	mzm[5][0]=0;
-	mzm[6][0]=0;
-
-	mzm[0][1]=13;
-	mzm[1][1]=13;
-	mzm[4][1]=0;
-	mzm[5][1]=0;
-	mzm[6][1]=0;
-
-	mzm[0][2]=0;
-	mzm[6][2]=0;
-
-	mzm[0][3]=0;
-	mzm[4][3]=13;
-	mzm[6][3]=0;
-
-	mzm[0][4]=0;
-	mzm[0][5]=0;
-
-	mzm[0][6]=0;
-	mzm[1][6]=0;
-	mzm[2][6]=0;
-	mzm[5][6]=13;
-	mzm[6][6]=13;
-
-	mzm[0][7]=0;
-	mzm[1][7]=0;
-	mzm[2][7]=0;
-	mzm[3][7]=0;
-	mzm[4][7]=0;
-	mzm[5][7]=0;
-	mzm[6][7]=0;
-
-	mzm[7][0]=0;
-	mzm[7][1]=0;
-	mzm[7][2]=0;
-	mzm[7][3]=0;
-	mzm[7][4]=0;
-	mzm[7][5]=0;
-	mzm[7][6]=0;
-	mzm[7][7]=0;
-
-	zm_st[5][0]=3;
-	mzm[5][0]=12;
-
-	zm_st[6][0]=3;
-	mzm[6][0]=12;
-
-
-	zm_st[5][1]=3;
-	mzm[5][1]=12;
-	
-	zm_st[6][1]=3;
-	mzm[6][1]=12;
-
-	mla[5][0]=start_lat;
-	mln[5][0]=start_lng;
-	mla_e[5][0]=start_lat+(end_lat-start_lat)/2;
-	mln_e[5][0]=start_lng+(end_lng-start_lng)/2;
-
-	mla[6][0]=start_lat+(end_lat-start_lat)/2;
-	mln[6][0]=start_lng;
-	mla_e[6][0]=end_lat;
-	mln_e[6][0]=start_lng+(end_lng-start_lng)/2;
-
-	mla[5][1]=start_lat;
-	mln[5][1]=start_lng+(end_lng-start_lng)/2;
-	mla_e[5][1]=start_lat+(end_lat-start_lat)/2;
-	mln_e[5][1]=end_lng;
-
-	mla[6][1]=start_lat+(end_lat-start_lat)/2;
-	mln[6][1]=start_lng+(end_lng-start_lng)/2;
-	mla_e[6][1]=end_lat;
-	mln_e[6][1]=end_lng;
-
-
-	console.log("mla da mln");
-	console.log(mla);
-	console.log(mln);
-	console.log("mla_end da mln_end ");
-	console.log(mla_e);
-	console.log(mln_e);
-
-
-
-	console.log("zoomebi");
-	console.log(zm_st);
-	
-	console.log(mzm);
-
-
-	for (ii=0;ii<7 ;ii++ )
-		{
-		for (i=0;i<7 ;i++ )
-			{
-			if (mzm[i][ii]>0)
-				{
-				sul_threads++;
-				console.log(mla[i][ii] + " - "+ mln[i][ii] + " /  "+mla_e[i][ii] + " - "+mln_e[i][ii] +" | "  +zm_st[i][ii] + " / "+mzm[i][ii]);
-				var tile_list = BASE.calculateXYZListFromBounds_cyborg(mla[i][ii], mln[i][ii],mla_e[i][ii],mln_e[i][ii], zm_st[i][ii], mzm[i][ii]);
-
-				BASE.downloadXYZList(ii*7+i, tile_list, true,
-				  
-					function (done,total, myblock) {
-						var percent = Math.round(100 * done / total);
-						status_block[myblock].innerHTML = myblock+" : "+done  + " / " + total + " = " + percent + "%";
-						procents[myblock]=percent;
-						totals[myblock]=total;
-						if (percent==100)
-							{
-							BASE.goOnline();
-							BASE.goOffline();
-							}
-					},
-				 
-					function () {
-//			   			status_block[myblock].innerHTML = myblock+" : Done";
-					//	BASE.goOnline();
-						//BASE.goOffline();
-						
-
-						//BASE.getDiskUsage(function (filecount,bytes) {
-						//	var kilobytes = Math.round( bytes / 1024 );
-//							status_block[myblock].innerHTML = myblock+"Done" + "<br/>" + filecount + " files" + "<br/>" + kilobytes + " kB";
-				//		});
-					},
-					function (error) {
-						alert("Failed\nError code: " + error.code);
-						}
-					);
-				}
-			}
-		}
-
-
-	
-		setTimeout("full_updater();",1000);
-	}
 
 
 </script>
@@ -406,4 +48,3 @@ function downtiles()
 
 
 </html>
-
