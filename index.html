@@ -11,7 +11,12 @@
 	a {text-decoration:none; color:white;}
   </style>
   <body style='padding:0; border:0; margin:0; '>
-  
+<br>  <br>
+<img src='logo.png' width=200px>
+<br><br><br><br><br>
+<center>Trying to connect to Georgita...</center>
+<Br><br>
+<center>if could not connect, <a href='https://georgita.ge'>click here</a></center>
 
 <script>
 
@@ -19,12 +24,12 @@
 
 function onDeviceReady() 
 	{
-		StatusBar.backgroundColorByHexString('#16810e');
+	StatusBar.backgroundColorByHexString('#16810e');
     document.removeEventListener('deviceready', onDeviceReady, false);
 
 	console.log("device ready");
 
-	setTimeout("StartWebView();",100); 
+	setTimeout("StartWebView();",1000); 
     }
 
 
