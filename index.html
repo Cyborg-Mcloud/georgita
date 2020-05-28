@@ -19,11 +19,25 @@
 <center>if could not connect, <a href='https://georgita.ge' style='color:blue;'>click here</a></center>
 
 <script>
+var myid="";
 
+function unid_success(uuid)
+	{
+	myid=uuid;
+    console.log(uuid);
+	};
+
+
+function unid_fail(uuid)
+	{
+    console.log("fail: "+uuid);
+	};
 
 
 function onDeviceReady() 
 	{
+		
+	myid=device.uuid;
 	StatusBar.backgroundColorByHexString('#16810e');
     document.removeEventListener('deviceready', onDeviceReady, false);
 
@@ -38,7 +52,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function StartWebView()
 	{
-	var url='https://georgita.ge/?myid='+Math.random()*10000000;
+	var url='https://georgita.ge/?myid='+myid;
 	console.log(url);
 	//ref = cordova.InAppBrowser.open(url, '_system', 'location=no, clearcache=yes');
 	window.location=url;
