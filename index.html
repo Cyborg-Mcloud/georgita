@@ -3,23 +3,23 @@
   <head>
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Strategic Jeiran</title>
+    <title>Georgita</title>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
   </head>
   <style>
-	body {font-family:arial; padding:0px; margin:0px; background-color:#3f3f3f; color:white; font-size:16px; max-width: 100%; overflow-x: hidden;}
+	
 	a {text-decoration:none; color:white;}
   </style>
   <body style='padding:0; border:0; margin:0; '>
-  <Br><Br><br><br><br><br><br><br><br>
-  <center>Loading...</center>
-</body>
-
-
+<br>  <br>
+<center><img src='logo.png' width=200px></center>
+<br><br><br>
+<center>Trying to connect to Georgita...</center>
+<Br><br>
+<center>if could not connect, <a href='https://georgita.ge' style='color:blue;'>click here</a></center>
 
 <script>
 var myid="";
-
 
 function unid_success(uuid)
 	{
@@ -33,17 +33,17 @@ function unid_fail(uuid)
     console.log("fail: "+uuid);
 	};
 
+
 function onDeviceReady() 
 	{
-	console.log("initiated");
-	
-	StatusBar.backgroundColorByHexString('#fc3c3c');
-    document.removeEventListener('deviceready', onDeviceReady, false);
-	
-	//cordova.plugins.uniqueDeviceID.get(unid_success, unid_fail);
-
+		
 	myid=device.uuid;
-	setTimeout("StartWebView();",100); 
+	StatusBar.backgroundColorByHexString('#16810e');
+    document.removeEventListener('deviceready', onDeviceReady, false);
+
+	console.log("device ready");
+
+	setTimeout("StartWebView();",1000); 
     }
 
 
@@ -52,14 +52,18 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function StartWebView()
 	{
-	var url='https://cyborg.ge/?myid='+myid;
+	var url='https://georgita.ge/?myid='+myid;
 	console.log(url);
+	//ref = cordova.InAppBrowser.open(url, '_system', 'location=no, clearcache=yes');
 	window.location=url;
 	}
 
 
-setTimeout("StartWebView();",1000); 
 
 </script>
+
+</body>
+
+
 
 </html>
