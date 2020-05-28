@@ -129,8 +129,8 @@
 	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
 
 	<gap:plugin name="cordova-plugin-inappbrowser"  source="npm" />
-	<plugin name="cordova-android-support-gradle-release" source="npm" >
-		<!--<variable name="ANDROID_SUPPORT_VERSION" value="26.0.1" />-->
+	<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
+		<variable name="ANDROID_SUPPORT_VERSION" value="26.0.1" />
 	</plugin>
 
 </widget>
