@@ -14,17 +14,16 @@
 	<icon src="1024.jpg" width="1024" height="1024" />
 
 
-
 <access origin="*" />
 <allow-intent href="*" />
 <allow-navigation href="*" />
-<allow-navigation href="*://*.smartgps.ge/*" />
-<allow-intent href="http://*/*" launch-external="yes"/>
-<allow-intent href="https://*/*" launch-external="yes"/>
+<allow-navigation href="*://*.georgita.ge/*" />
+
  <platform name="android">
-	<preference name="android-minSdkVersion" value="18" />
-	<allow-intent href="market:*" />
-</platform>
+        <preference name="android-minSdkVersion" value="18" />
+        <allow-intent href="market:*" />
+    </platform>
+
 
 
 
@@ -77,6 +76,9 @@
 	<preference name="webviewbounce" value="true" />  
 	<preference name="DisallowOverscroll" value="false" />
 	<preference name="stay-in-webview"            value="false" /> 
+
+
+
 	<preference name="exit-on-suspend"            value="false" />          
 	<preference name="show-splash-screen-spinner" value="false" />    
 	<preference name="auto-hide-splash-screen"    value="false" />
@@ -89,14 +91,7 @@
 	<preference name="StatusBarBackgroundColor" value="#16810e" />
 	<preference name="StatusBarStyle" value="lightcontent" />
 
-	
-
-
-	
-	
 	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
-
-
 	<description>
     Georgita
     </description>
@@ -112,17 +107,19 @@
 
     </plugins>
 
+	<feature name="http://api.phonegap.com/1.0/device" />
+
 
 	<feature name="App">
 	  <param name="android-package" value="com.designge.georgita"/>
 	</feature>
 
+	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-
-	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
-	<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
-		<variable name="ANDROID_SUPPORT_VERSION" value="26.0.1" />
-	</plugin>
 	
+	<plugin name="cordova-plugin-device" source="npm" />
+	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
+
+	<gap:plugin name="cordova-plugin-inappbrowser"  source="npm" />
 
 </widget>
