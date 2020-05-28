@@ -75,7 +75,6 @@
     <string>1.5.7</string>
 </gap:config-file>
 
-<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 <preference name="android-build-tool" value="gradle" /> 
 <!--<preference name="StatusBarOverlaysWebView" value="true" />-->
 	<preference name="phonegap-version" value="cli-8.0.0" /> 
@@ -100,6 +99,7 @@
 	<preference name="StatusBarBackgroundColor" value="#16810e" />
 	<preference name="StatusBarStyle" value="lightcontent" />
 
+	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 	<description>
     Georgita
     </description>
@@ -135,7 +135,8 @@
 	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
 
 	<gap:plugin name="cordova-plugin-inappbrowser"  source="npm" />
-		<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
+	<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
 		<variable name="ANDROID_SUPPORT_VERSION" value="26.0.1" />
+	</plugin>
 
 </widget>
