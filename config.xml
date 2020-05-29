@@ -3,8 +3,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
          id        = "com.designge.georgita"
-	    versionCode="28" 
-        version   = "0.1.5"
+	    versionCode="29" 
+        version   = "0.1.6"
 		package="com.designge.georgita"
 		xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Georgita</name>
@@ -70,6 +70,13 @@
 
 	</config-file>
 
+	<preference name="WKWebViewOnly" value="true" />
+
+    <feature name="CDVWKWebViewEngine">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 
 </platform>
 
@@ -123,6 +130,8 @@ Georgita
 
 <!--	<plugin name="cordova-plugin-dialogs" spec="^1.3.4"/>-->
 <!--	<plugin name="cordova-plugin-device" source="npm" />-->
+
+	<gap:plugin name="cordova-plugin-wkwebview-engine" source="npm" />
 
 	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
 	<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
