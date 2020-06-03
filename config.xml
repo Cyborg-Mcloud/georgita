@@ -132,7 +132,7 @@ Georgita
 	<plugin name="cordova-plugin-device" source="npm" />
 
 	<gap:plugin name="cordova-plugin-wkwebview-engine" source="npm" />
-
+	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
 	<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
 		<variable name="ANDROID_SUPPORT_VERSION" value="18.0.1" />
