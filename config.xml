@@ -88,7 +88,7 @@
 
 <preference name="android-build-tool" value="gradle" /> 
 <!--<preference name="StatusBarOverlaysWebView" value="true" />-->
-	<preference name="phonegap-version" value="cli-9.0.0" /> 
+	<preference name="phonegap-version" value="cli-8.0.0" /> 
 	<preference name="orientation" value="portrait" />
 	<preference name="target-device"              value="handset" />
 <!--	<preference name="fullscreen" value="true" />-->
@@ -100,7 +100,7 @@
 <preference name="show-splash-screen-spinner" value="false" />    
 <preference name="auto-hide-splash-screen"    value="false" />
 <preference name="disable-cursor"             value="false" />
-<preference name="android-minSdkVersion"      value="28" />         
+<preference name="android-minSdkVersion"      value="24" />         
 <preference name="android-installLocation"    value="auto" />
 <preference name="EnableViewportScale"    value="true" />
 
@@ -135,7 +135,7 @@ Georgita
 
 	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
 	<plugin name="cordova-android-support-gradle-release" spec="^1.1.1">
-		<variable name="ANDROID_SUPPORT_VERSION" value="28.0.1" />
+		<variable name="ANDROID_SUPPORT_VERSION" value="24.0.1" />
 	</plugin>
     </plugins>
 </widget>
